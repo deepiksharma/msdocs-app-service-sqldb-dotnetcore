@@ -26,8 +26,11 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+        run: dotnet tool install -g dotnet-ef
+        
+      - name: dotnet bundle migration
+        run: (/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#bundles)
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
